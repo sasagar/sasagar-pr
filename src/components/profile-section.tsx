@@ -17,11 +17,8 @@ export function ProfileSection({ username, prs, lastUpdated }: ProfileSectionPro
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
+    // JST形式の文字列（例: "2025-12-22 02:15:30"）をそのまま表示
+    return dateString;
   };
 
   return (
