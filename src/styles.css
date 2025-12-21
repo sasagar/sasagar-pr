@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-background: oklch(1 0 0);
   --color-foreground: oklch(0.145 0 0);
@@ -27,10 +29,10 @@
   --color-pr-closed: oklch(0.55 0.2 25);
 }
 
-.dark {
+:root.dark {
   --color-background: oklch(0.145 0 0);
   --color-foreground: oklch(0.985 0 0);
-  --color-card: oklch(0.145 0 0);
+  --color-card: oklch(0.205 0 0);
   --color-card-foreground: oklch(0.985 0 0);
   --color-popover: oklch(0.145 0 0);
   --color-popover-foreground: oklch(0.985 0 0);
