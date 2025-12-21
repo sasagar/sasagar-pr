@@ -192,10 +192,22 @@ async function fetchAllPRs(): Promise<{
   return { prs: allPRs, orgs };
 }
 
+function toJSTString(date: Date): string {
+  return date.toLocaleString("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).replace(/\//g, "-");
+}
+
 async function main() {
   try {
     const { prs, orgs } = await fetchAllPRs();
-    const lastUpdated = new Date().toISOString();
+    const lastUpdated = toJSTString(new Date());
 
     console.log(
       `Found ${prs.length} PRs from ${orgs.length} organizations`
