@@ -6,6 +6,9 @@ dist
 *.log
 .claude
 
+# Auto-generated data files
+src/data/
+
 # OS files
 .DS_Store
 Thumbs.db
