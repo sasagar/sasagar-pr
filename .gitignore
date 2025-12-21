@@ -1,0 +1,18 @@
+node_modules
+dist
+.waku
+.env
+.env.local
+*.log
+.claude
+
+# OS files
+.DS_Store
+Thumbs.db
+nul
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
