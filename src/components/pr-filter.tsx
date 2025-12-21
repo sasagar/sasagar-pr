@@ -35,7 +35,9 @@ export function PRFilter({
     <div className="mb-6 space-y-4">
       <Tabs value={status} onValueChange={(v) => onStatusChange(v as FilterStatus)}>
         <TabsList className="grid w-full grid-cols-4 h-11">
-          <TabsTrigger value="all" className="text-sm">All</TabsTrigger>
+          <TabsTrigger value="all" className="text-sm">
+            All
+          </TabsTrigger>
           <TabsTrigger value="open" className="flex items-center gap-1.5 text-sm">
             <span className="h-2 w-2 rounded-full bg-pr-open" />
             Open
@@ -62,7 +64,7 @@ export function PRFilter({
           />
         </div>
         <Select value={org} onValueChange={onOrgChange}>
-          <SelectTrigger className="w-full sm:w-[220px] h-10">
+          <SelectTrigger className="w-full sm:w-55 h-10">
             <Building2 className="h-4 w-4 mr-2 text-muted-foreground" />
             <SelectValue placeholder="All Organizations" />
           </SelectTrigger>
@@ -71,11 +73,7 @@ export function PRFilter({
             {orgs.map((o) => (
               <SelectItem key={o.name} value={o.name}>
                 <div className="flex items-center gap-2">
-                  <img
-                    src={o.avatarUrl}
-                    alt={o.name}
-                    className="w-4 h-4 rounded-sm"
-                  />
+                  <img src={o.avatarUrl} alt={o.name} className="w-4 h-4 rounded-sm" />
                   <span>{o.name}</span>
                   <span className="text-muted-foreground">({o.prCount})</span>
                 </div>
