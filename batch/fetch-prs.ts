@@ -2,6 +2,7 @@ import { Octokit } from "octokit";
 import { writeFileSync, mkdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { generateOGPImage } from "./generate-ogp.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -240,6 +241,19 @@ export const orgs: Organization[] = ${JSON.stringify(orgs, null, 2)};
     writeFileSync(join(dataDir, "orgs.ts"), orgsContent);
 
     console.log("Data files generated successfully!");
+
+    // Generate OGP image with PR statistics
+    const openPRs = prs.filter((pr) => pr.state === "open").length;
+    const mergedPRs = prs.filter((pr) => pr.state === "merged").length;
+    const closedPRs = prs.filter((pr) => pr.state === "closed").length;
+
+    await generateOGPImage({
+      totalPRs: prs.length,
+      openPRs,
+      mergedPRs,
+      closedPRs,
+      lastUpdated,
+    });
   } catch (error) {
     console.error("Error fetching PRs:", error);
     process.exit(1);
