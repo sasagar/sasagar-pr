@@ -9,6 +9,9 @@ dist
 # Auto-generated data files
 src/data/
 
+# Auto-generated OGP image
+public/ogp.png
+
 # OS files
 .DS_Store
 Thumbs.db
