@@ -40,7 +40,9 @@ export function PRCard({ pr }: PRCardProps) {
         : "closed";
 
   return (
-    <Card className={`group border-l-4 ${StatusBorderClass(pr.state)} hover:shadow-lg hover:scale-[1.01] transition-all duration-200`}>
+    <Card
+      className={`group border-l-4 ${StatusBorderClass(pr.state)} hover:shadow-lg hover:scale-[1.01] transition-all duration-200`}
+    >
       <div className="p-4">
         <div className="flex items-start gap-3">
           {/* Repository Avatar */}
@@ -62,7 +64,12 @@ export function PRCard({ pr }: PRCardProps) {
             {/* Title Row */}
             <div className="flex items-start justify-between gap-2 mb-1">
               <h3 className="font-semibold text-sm leading-tight line-clamp-2 group-hover:text-primary transition-colors">
-                <a href={pr.url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                <a
+                  href={pr.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
                   {pr.title}
                 </a>
               </h3>
@@ -95,7 +102,9 @@ export function PRCard({ pr }: PRCardProps) {
                 <span>{pr.changedFiles}</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="text-green-600 dark:text-green-400 font-medium">+{pr.additions}</span>
+                <span className="text-green-600 dark:text-green-400 font-medium">
+                  +{pr.additions}
+                </span>
                 <span className="text-red-600 dark:text-red-400 font-medium">-{pr.deletions}</span>
               </div>
               {pr.comments > 0 && (

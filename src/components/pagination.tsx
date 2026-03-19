@@ -20,19 +20,36 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
   const pages = generatePageNumbers(currentPage, totalPages);
   return (
     <nav className="flex items-center justify-center gap-1">
-      <Button variant="outline" size="icon" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+      >
         <ChevronLeft className="h-4 w-4" />
       </Button>
       {pages.map((page, index) =>
         page === "..." ? (
-          <span key={`ellipsis-${index}`} className="px-2 text-muted-foreground">...</span>
+          <span key={`ellipsis-${index}`} className="px-2 text-muted-foreground">
+            ...
+          </span>
         ) : (
-          <Button key={page} variant={currentPage === page ? "default" : "outline"} size="icon" onClick={() => onPageChange(page as number)}>
+          <Button
+            key={page}
+            variant={currentPage === page ? "default" : "outline"}
+            size="icon"
+            onClick={() => onPageChange(page as number)}
+          >
             {page}
           </Button>
-        )
+        ),
       )}
-      <Button variant="outline" size="icon" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+      >
         <ChevronRight className="h-4 w-4" />
       </Button>
     </nav>

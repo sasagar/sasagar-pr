@@ -28,10 +28,7 @@ async function loadFont(): Promise<ArrayBuffer> {
   for (const fontPath of fontPaths) {
     try {
       const fontData = readFileSync(fontPath);
-      return fontData.buffer.slice(
-        fontData.byteOffset,
-        fontData.byteOffset + fontData.byteLength
-      );
+      return fontData.buffer.slice(fontData.byteOffset, fontData.byteOffset + fontData.byteLength);
     } catch {
       // Try next font
     }
@@ -40,7 +37,7 @@ async function loadFont(): Promise<ArrayBuffer> {
   // Fetch Inter font from Google Fonts (widely available, good for UI)
   console.log("Fetching font from Google Fonts...");
   const fontResponse = await fetch(
-    "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff"
+    "https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff",
   );
   if (!fontResponse.ok) {
     throw new Error(`Failed to fetch font: ${fontResponse.status}`);

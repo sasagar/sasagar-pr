@@ -49,9 +49,7 @@ export function ProfileSection({ username, prs, lastUpdated }: ProfileSectionPro
               <Github className="h-6 w-6" />
             </a>
           </h1>
-          <p className="text-muted-foreground">
-            Pull Requests across Open Source Projects
-          </p>
+          <p className="text-muted-foreground">Pull Requests across Open Source Projects</p>
           <p className="text-sm text-muted-foreground mt-1">
             Last updated: {formatDate(lastUpdated)}
           </p>

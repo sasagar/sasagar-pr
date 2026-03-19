@@ -34,8 +34,8 @@ npm run build
 
 ## 環境変数
 
-| 変数名 | 説明 |
-|--------|------|
+| 変数名         | 説明                                           |
+| -------------- | ---------------------------------------------- |
 | `GITHUB_TOKEN` | GitHub Personal Access Token（PRデータ取得用） |
 
 ## GitHub Actions
@@ -48,11 +48,11 @@ PRデータは以下のタイミングで自動更新されます：
 
 ### 必要なSecrets
 
-| Secret名 | 説明 |
-|----------|------|
-| `GH_PAT` | GitHub Personal Access Token |
-| `CLOUDFLARE_API_TOKEN` | Cloudflare API Token |
-| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Account ID |
+| Secret名                | 説明                         |
+| ----------------------- | ---------------------------- |
+| `GH_PAT`                | GitHub Personal Access Token |
+| `CLOUDFLARE_API_TOKEN`  | Cloudflare API Token         |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare Account ID        |
 
 ## ライセンス
 

@@ -55,8 +55,15 @@ export function PRList({ prs, orgs }: PRListProps) {
 
   return (
     <div>
-      <PRFilter orgs={orgs} status={status} search={search} org={org}
-        onStatusChange={handleStatusChange} onSearchChange={handleSearchChange} onOrgChange={handleOrgChange} />
+      <PRFilter
+        orgs={orgs}
+        status={status}
+        search={search}
+        org={org}
+        onStatusChange={handleStatusChange}
+        onSearchChange={handleSearchChange}
+        onOrgChange={handleOrgChange}
+      />
       <p className="mb-4 text-sm text-muted-foreground">{filteredPRs.length} PRs found</p>
       {paginatedPRs.length === 0 ? (
         <div className="text-center py-12 text-muted-foreground">
@@ -65,10 +72,16 @@ export function PRList({ prs, orgs }: PRListProps) {
         </div>
       ) : (
         <div className="grid gap-4">
-          {paginatedPRs.map((pr) => (<PRCard key={pr.id} pr={pr} />))}
+          {paginatedPRs.map((pr) => (
+            <PRCard key={pr.id} pr={pr} />
+          ))}
         </div>
       )}
-      {totalPages > 1 && <div className="mt-6"><Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} /></div>}
+      {totalPages > 1 && (
+        <div className="mt-6">
+          <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+        </div>
+      )}
     </div>
   );
 }
