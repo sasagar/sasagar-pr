@@ -93,9 +93,8 @@ async function fetchAllPRs(): Promise<{
 
   console.log(`Fetching PRs for ${USERNAME}...`);
 
-  while (hasNextPage) {
-    const response = (await octokit.graphql(query, { cursor })) as {
-      search: {
+  type SearchResponse = {
+    search?: {
         pageInfo: { hasNextPage: boolean; endCursor: string };
         nodes: Array<{
           id: string;
@@ -121,7 +120,25 @@ async function fetchAllPRs(): Promise<{
       };
     };
 
-    const { nodes, pageInfo } = response.search;
+  // GitHub occasionally returns an empty response for a page; retry it a few times
+  const fetchPage = async (cursor: string | null) => {
+    const maxAttempts = 4;
+    for (let attempt = 1; ; attempt++) {
+      try {
+        const response = (await octokit.graphql(query, { cursor })) as SearchResponse;
+        if (response?.search) return response.search;
+        if (attempt >= maxAttempts) throw new Error("GraphQL response has no search field");
+        console.warn(`Empty response (attempt ${attempt}/${maxAttempts}), retrying...`);
+      } catch (error) {
+        if (attempt >= maxAttempts) throw error;
+        console.warn(`Request failed (attempt ${attempt}/${maxAttempts}), retrying...`, error);
+      }
+      await new Promise((resolve) => setTimeout(resolve, 5000 * attempt));
+    }
+  };
+
+  while (hasNextPage) {
+    const { nodes, pageInfo } = await fetchPage(cursor);
 
     for (const node of nodes) {
       if (!node) continue;
